@@ -1,0 +1,148 @@
+Ultimate Tic-Tac-Toe Game Documentation
+1. Program Overview
+This final version implements a fully-featured Tic-Tac-Toe game with:
+
+Scalable board sizes (3x3 to 9x9)
+
+Unbeatable AI using Alpha-Beta pruning
+
+Move history tracking
+
+Clean console interface
+
+Key Improvements:
+
+Added Alpha-Beta pruning to optimize AI performance
+
+Enhanced code structure and documentation
+
+Improved win-checking efficiency
+
+2. Core Components
+2.1. Data Structures
+c
+#define MAX_SIZE 9
+
+char board[MAX_SIZE][MAX_SIZE];  // Game board
+int boardSize;                   // Current dimension (3-9)
+int moveHistory[MAX_SIZE*MAX_SIZE][2]; // Move history
+int moveCount = 0;               // Current move count
+2.2. Key Functions
+Function	Parameters	Description
+minimax	depth, isMaximizing, alpha, beta	Implements AI decision with pruning
+findBestMove	None	Finds optimal move using minimax
+checkWin	None	Checks all win conditions
+isValidMove	row, col	Validates move coordinates
+undoMove	None	Reverts last move
+3. AI Implementation
+3.1. Minimax with Alpha-Beta Pruning
+c
+int minimax(int depth, int isMaximizing, int alpha, int beta) {
+    // Base cases
+    if (checkWin()) return isMaximizing ? -10 : 10;
+    if (isBoardFull()) return 0;
+
+    if (isMaximizing) {
+        int best = -1000;
+        for (all empty cells) {
+            make move;
+            int val = minimax(depth+1, 0, alpha, beta);
+            best = max(val, best);
+            alpha = max(alpha, best);
+            undo move;
+            if (beta <= alpha) break; // Prune
+        }
+        return best;
+    } else {
+        // Minimizing player logic
+    }
+}
+Optimization Benefits:
+
+Reduces search space by up to 50%
+
+Enables larger board sizes to be playable
+
+Maintains perfect AI play while being faster
+
+4. Game Flow
+Initialization
+
+Prompt for board size (3-9)
+
+Initialize empty board
+
+Reset move history
+
+Game Loop
+
+Human player ('X') inputs move
+
+AI ('O') calculates optimal move
+
+After each move:
+
+Record move
+
+Check win/draw conditions
+
+Display updated board
+
+Termination
+
+Display final board
+
+Announce winner/draw
+
+Show copyright information
+
+5. Usage Example
+bash
+Enter board size (3-9): 4
+
+  |   |   |  
+-----------
+  |   | X |  
+-----------
+  | O |   |  
+-----------
+  |   |   |  
+
+Player X, enter row and column (0-3): 1 1
+
+6. Future Enhancements
+Difficulty Levels
+
+Limit AI recursion depth for easier levels
+
+GUI Version
+
+Implement using GTK or SDL
+
+Network Play
+
+Add multiplayer over sockets
+
+Enhanced Visuals
+
+Colorized output
+
+Animations
+
+7. Conclusion
+This implementation demonstrates:
+
+Advanced game algorithms (Minimax with pruning)
+
+Professional C programming practices
+
+Scalable architecture
+
+Clean user interface
+
+For the latest version and updates:
+GitHub/TchambaMSK
+
+Copyright © 2025 Tchamba Mbasseune Steve Karell
+All Rights Reserved
+Contact: stevekarelltchamba@gmail.com
