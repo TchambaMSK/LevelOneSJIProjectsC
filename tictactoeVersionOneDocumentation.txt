@@ -1,0 +1,125 @@
+Programmer: Tchamba Mbasseune Steve Karell
+GitHub: TchambaMSK
+Email: stevekarelltchamba@gmail.com
+
+1. Program Overview
+This C program implements a console-based Tic-Tac-Toe game where two players alternate turns placing X and O on a 3x3 grid. The game checks for a winner after each move and declares a draw if the board fills without a winner.
+
+2. Key Components
+2.1. Global Variables
+ticTacBoard[3][3] → A 3x3 char array representing the game board.
+
+Initially filled with spaces (' ').
+
+Updated with 'X' or 'O' based on player moves.
+
+2.2. Functions
+Function	Description
+initializeBoard()	Fills the board with empty spaces (' ').
+printTheBoard()	Displays the current state of the board with grid lines.
+isTheMoveOk(row, col)	Checks if a move is valid (within bounds and unoccupied).
+checkIfWon()	Checks rows, columns, and diagonals for a winning line.
+isBoardFull()	Determines if the board is full (no spaces left).
+3. Detailed Code Explanation
+3.1. main() Function
+Initial Setup:
+
+Prints a welcome message.
+
+Initializes the board (initializeBoard()).
+
+Game Loop:
+
+Alternates turns between 'X' and 'O' using turnToPlay % 2.
+
+Takes player input (row and col).
+
+Validates the move (isTheMoveOk()).
+
+Updates the board if valid.
+
+Checks for a winner (checkIfWon()) or a draw (isBoardFull()).
+
+Game End:
+
+Prints the final board.
+
+Declares the winner (gameStatus = 1) or a draw (gameStatus = 2).
+
+3.2. initializeBoard()
+Uses nested loops to set all board cells to ' ' (empty).
+
+3.3. printTheBoard()
+Prints the board in a grid format with separators (---|---|---).
+
+Example:
+
+ X | O | X
+---|---|---
+ O | X | O
+---|---|---
+ X |   |  
+3.4. isTheMoveOk(row, col)
+Returns 1 (true) if:
+
+row and col are between 0 and 2.
+
+The cell is empty (ticTacBoard[row][col] == ' ').
+
+Otherwise, returns 0 (false).
+
+3.5. checkIfWon()
+Checks Rows & Columns:
+
+If any row or column has three identical symbols (X or O), returns 1 (win).
+
+Checks Diagonals:
+
+Tests both main ([0][0] to [2][2]) and anti-diagonal ([0][2] to [2][0]).
+
+Returns 0 if no winner is found.
+
+3.6. isBoardFull()
+Returns 1 if all cells are occupied (no ' ' left).
+
+Returns 0 if at least one empty cell exists.
+
+4. Flowchart (Simplified)
+START → Initialize Board → Print Board → Player Input → Validate Move → Update Board  
+          ↑                                    ↓  
+          ← Check Win/Draw ← Print Result ← Declare Winner/Draw  
+5. Error Handling
+Invalid Moves:
+
+If a player enters an out-of-bounds index or an occupied cell, the program prompts for a retry.
+
+Game Termination:
+
+Ends automatically upon a win or draw.
+
+6. Future Improvements
+Input Validation:
+
+Handle non-integer inputs (e.g., letters).
+
+AI Opponent:
+
+Add a simple AI for single-player mode.
+
+GUI Version:
+
+Port to a graphical interface (e.g., SDL, GTK).
+
+7. Conclusion
+This program provides a fully functional Tic-Tac-Toe game with:
+
+Turn-based gameplay (X vs O).
+
+Win/draw detection.
+
+Simple console interaction.
+
+For updates, check GitHub: TchambaMSK
+
+Documentation by Tchamba Mbasseune Steve Karell
+© 2025 - All rights reserved
