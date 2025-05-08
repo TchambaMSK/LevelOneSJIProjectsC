@@ -1,0 +1,162 @@
+Programmer: Tchamba Mbasseune Steve Karell
+GitHub: TchambaMSK
+Email: stevekarelltchamba@gmail.com
+
+1. Program Overview
+This enhanced C program implements a scalable Tic-Tac-Toe game (3x3 to 9x9) featuring:
+
+Human vs AI gameplay
+
+Minimax algorithm for AI decision-making
+
+Move history with undo capability
+
+Dynamic board sizing
+
+2. Key Improvements Over Basic Version
+Feature	Basic Version	Advanced Version
+Board Size	Fixed 3x3	Configurable (3-9)
+Opponent	Human-only	AI with Minimax
+Move Tracking	None	Full history with undo
+Win Detection	Hardcoded	Scalable logic
+Code Structure	Simple functions	Advanced algorithms
+3. Core Components
+3.1. Global Variables
+board[MAX_SIZE][MAX_SIZE] → Dynamic game board
+
+boardSize → User-defined dimension (3-9)
+
+moveHistory[][] → Tracks all moves for undo functionality
+
+moveCount → Current turn number
+
+3.2. Key Functions
+Function	Purpose
+initializeBoard()	Creates empty NxN board
+printBoard()	Displays current game state
+isValidMove()	Validates position availability
+checkWin()	Scalable win detection (rows/cols/diags)
+recordMove()	Logs moves for history/undo
+minimax()	AI decision algorithm (recursive)
+findBestMove()	Determines optimal AI move
+4. Algorithm Deep Dive
+4.1. Minimax AI Implementation
+c
+int minimax(int depth, int isMaximizing) {
+    // Base cases
+    if (checkWin()) return isMaximizing ? -10 : 10; 
+    if (isBoardFull()) return 0;
+
+    if (isMaximizing) {
+        int best = -1000;
+        for (all empty cells) {
+            make move;
+            best = max(best, minimax(depth+1, 0));
+            undo move;
+        }
+        return best;
+    } else {
+        int best = 1000;
+        for (all empty cells) {
+            make move;
+            best = min(best, minimax(depth+1, 1));
+            undo move;
+        }
+        return best;
+    }
+}
+Key Characteristics:
+
+Recursive depth-first search
+
+Score evaluation (+10 AI win, -10 human win, 0 draw)
+
+Branch pruning for efficiency
+
+4.2. Scalable Win Detection
+c
+// Checks all rows/columns
+for (i = 0 to size) {
+    rowWin = colWin = 1;
+    for (j = 0 to size) {
+        if (row not uniform) rowWin=0;
+        if (col not uniform) colWin=0;
+    }
+    if (rowWin || colWin) return win;
+}
+
+// Checks diagonals
+diag1 = diag2 = 1;
+for (i = 0 to size) {
+    if (main diag not uniform) diag1=0;
+    if (anti-diag not uniform) diag2=0;
+}
+return diag1 || diag2;
+5. Program Flow
+Initialization
+
+User selects board size (3-9)
+
+Board memory allocated
+
+AI difficulty set via minimax depth
+
+Game Loop
+
+Diagram
+Code
+graph TD
+A[Print Board] --> B{Player Turn?}
+B -->|Human| C[Get Input]
+B -->|AI| D[Calculate Best Move]
+C/D --> E[Validate Move]
+E --> F[Update Board]
+F --> G[Check Win/Draw]
+G -->|Continue| A
+G -->|End| H[Display Result]
+Termination
+
+Win/draw declaration
+
+Score display
+
+Memory cleanup
+
+6. Usage Example
+bash
+$ ./tictactoe
+Enter board size (3-9): 5
+
+  |   |   |   |  
+-----------------
+  |   |   |   |  
+-----------------
+  |   | X |   |  
+-----------------
+  |   |   | O |  
+-----------------
+  |   |   |   |  
+
+Player X, enter row and column (0-4): 2 2
+7. Future Enhancements
+Alpha-Beta Pruning → Optimize minimax performance
+
+Difficulty Levels → Limit AI recursion depth
+
+GUI Interface → SDL/OpenGL visualization
+
+Network Play → Multiplayer over sockets
+
+8. Conclusion
+This implementation demonstrates:
+
+Algorithmic thinking with minimax
+
+Scalable design for NxN boards
+
+Professional-grade C programming practices
+
+For the latest version: GitHub/TchambaMSK
+
+Documentation by Tchamba Mbasseune Steve Karell
+© 2025 - All Rights Reserved
